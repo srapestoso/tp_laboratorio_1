@@ -15,29 +15,23 @@ Employee* employee_new()
 		employee_setNombre(newEmployee,"");
 		employee_setHorasTrabajadas(newEmployee,0);
 		employee_setSueldo(newEmployee,0);
-//    	newEmployee->id = 0;
-//    	strcpy(newEmployee->nombre,"");
-//    	newEmployee->horasTrabajadas = 0;
-//    	newEmployee->sueldo = 0;
     }
     return newEmployee;
-
-	//return (Employee*)malloc(sizeof(Employee));
 }
 
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldo)
 {
     Employee* newEmployee = employee_new();
-   // printf("\n///////////////////////// %s //////////////////////// \n",nombreStr);
 
     if(newEmployee != NULL && idStr!= NULL && nombreStr!=NULL && horasTrabajadasStr!=NULL && sueldo!=NULL )
     {
-        if((employee_setId(newEmployee,atoi(idStr)) && employee_setNombre(newEmployee,nombreStr) && employee_setHorasTrabajadas(newEmployee,atoi(horasTrabajadasStr)) && employee_setSueldo(newEmployee,atoi(sueldo)))!=0)
-        {
-        	printf("\nNO DEBERÍA ENTRAR");
-            free(newEmployee);
-            newEmployee=NULL;
-        }
+    	employee_setId(newEmployee,atoi(idStr));
+    	employee_setNombre(newEmployee,nombreStr);
+    	employee_setHorasTrabajadas(newEmployee,atoi(horasTrabajadasStr));
+    	employee_setSueldo(newEmployee,atoi(sueldo));
+    }else{
+    	employee_delete(newEmployee);
+    	newEmployee=NULL;
     }
     return newEmployee;
 
@@ -64,14 +58,13 @@ int employee_setNombre(Employee* this,char* nombre){
 	int ret = -1;
 	if(this!= NULL && nombre != NULL){
 		strcpy(this->nombre ,nombre);
-		//printf("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!! %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n",nombre);
 		ret = 0;
 	}
 	return ret;
 }
 int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas){
 	int ret = -1;
-	if(this!=NULL && (horasTrabajadas<0 || horasTrabajadas >24)){
+	if(this!=NULL && horasTrabajadas>0){
 		this->horasTrabajadas = horasTrabajadas;
 		ret = 0;
 	}
@@ -126,7 +119,79 @@ void employee_printEmployee(void* this){
 
 	if(this!=NULL){
 		if(employee_getId(this,&id) == 0 && employee_getNombre(this,name) == 0 &&	employee_getHorasTrabajadas(this,&horasTrabajadas) == 0 &&	employee_getSueldo(this,&sueldo) == 0){
-			printf("\n%d\t %5s \t %5d \t\t %5d \n",id,name,horasTrabajadas,sueldo);
+			printf("\n%d %10s  %10d   %10d \n",id,name,horasTrabajadas,sueldo);
 		}
 	}
+}
+int employee_orderID(void* thisA, void* thisB){
+	int criterio = -1;
+	int id1;
+	int id2;
+
+	employee_getId(thisA,&id1);
+	employee_getId(thisB,&id2);
+
+	if(id1 > id2)
+	{
+		criterio = 1;
+	}else if(id1 == id2){
+		criterio = 0;
+	}else{
+		criterio = -1;
+	}
+
+	return criterio;
+}
+int employee_orderName(void* thisA, void* thisB ){
+	int criterio = -1;
+	char nombre1[128];
+	char nombre2[128];
+
+	employee_getNombre(thisA,nombre1);
+	employee_getNombre(thisB,nombre2);
+
+	if(strcmp(nombre1,nombre2) == 0){
+		criterio = 0;
+	}else if(strcmp(nombre1,nombre2) >0){
+		criterio = 1;
+	}else{
+		criterio = -1;
+	}
+	return criterio;
+}
+
+int employee_orderSueldo(void* thisA, void* thisB ){
+	int criterio = -1;
+	int sueldo1;
+	int sueldo2;
+
+	employee_getSueldo(thisA,&sueldo1);
+	employee_getSueldo(thisB,&sueldo2);
+
+	if(sueldo1 == sueldo2){
+		criterio = 0;
+	}else if(sueldo1 > sueldo2){
+		criterio = 1;
+	}else{
+		criterio = -1;
+	}
+	return criterio;
+}
+
+int employee_orderHorasTrabajadas(void* thisA, void* thisB ){
+	int criterio = -1;
+	int horas1;
+	int horas2;
+
+	employee_getHorasTrabajadas(thisA,&horas1);
+	employee_getHorasTrabajadas(thisB,&horas2);
+
+	if(horas1 == horas2){
+		criterio = 0;
+	}else if(horas1 > horas2){
+		criterio = 1;
+	}else{
+		criterio = -1;
+	}
+	return criterio;
 }

@@ -65,4 +65,14 @@ void menuPrincipial(void);
  * brief: Muestra el menu para la modificación de los datos.
  */
 void menuModificar(void);
+
+/*
+ * brief: Muestra un menu al usuario para seleccionar un criterio de ordenamiento.
+ */
+void menuOrdenamiento1(void);
+
+/*
+ * brief: Muestra un menu de seleccion de ordenamiento al usuario.
+ */
+void menuOrdenamiento2(void);
 #endif /* UTN_H_ */

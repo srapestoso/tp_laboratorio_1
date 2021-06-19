@@ -26,4 +26,9 @@ int employee_getSueldo(Employee* this,int* sueldo);
 
 void employee_printEmployee(void* this);
 
+int employee_orderID(void* thisA, void* thisB);
+int employee_orderName(void* thisA, void* thisB );
+int employee_orderHorasTrabajadas(void* thisA, void* thisB );
+int employee_orderSueldo(void* thisA, void* thisB );
+
 #endif // employee_H_INCLUDED

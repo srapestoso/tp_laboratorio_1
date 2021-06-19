@@ -189,5 +189,24 @@ void menuModificar(void){
 		     "2. Modificar Horas trabajadas\n"
 		     "3. Modificar Sueldo\n"
 		     "4. Cancelar\n"
-			"|||||||||||||||||||||||||||||||||||||||||||||||||||||/\n");
+			"|||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+}
+
+void menuOrdenamiento1(void){
+	printf("\n*******************************\n"
+			"Como desea ordenar su listar?\n"
+			"1) Ascendente\n"
+			"2) Descendente\n"
+			"*******************************\n");
+}
+
+void menuOrdenamiento2(void){
+	printf("\n////////////////////////\n"
+			"Qué desea ordenar?\n"
+			"1) Ordenar por id\n"
+			"2) Ordenar por Nombre\n"
+			"3) Ordenar por Horas Trabajadas\n"
+			"4) Ordenar por Sueldo\n"
+			"////////////////////////\n");
+
 }

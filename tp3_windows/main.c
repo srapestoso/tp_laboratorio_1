@@ -40,33 +40,35 @@ int main()
 			switch(option)
 			{
 					case 1:
-						text = controller_loadFromText("data.csv",listaEmpleados);
+						text = controller_loadFromText("data.csv",listaEmpleados,&id);
 						if(!text){
 							flagText = 1;
+							id++;
 						}
 						break;
 					case 2:
-						bin = controller_loadFromBinary("data.csv",listaEmpleados);
+						bin = controller_loadFromBinary("data.csv",listaEmpleados,&id);
 						if(!bin){
 							flagBin = 1;
+							id++;
 						}
 						break;
 					case 3:
 						abm = controller_addEmployee(listaEmpleados,&id);
 						if(!abm){
 							flagABM = 1;
+							id++;
 						}
 						break;
 					case 4:
 						if(flagABM || flagText || flagBin){
 						controller_editEmployee(listaEmpleados);
 						}else{
-							printf("\nPara acceder a esta opcion debe realizarse una carga o una lectura de archivo... volviendo al menu...");
-						}
+							printf("\nPara acceder a esta opcion debe realizarse una carga o una lectura de archivo... volviendo al menu...");}
 						break;
 					case 5:
 						if(flagABM || flagText || flagBin){
-						controller_removeEmployee(listaEmpleados);
+							controller_removeEmployee(listaEmpleados);
 						}else{
 							printf("\nPara acceder a esta opcion debe realizarse una carga o una lectura de archivo... volviendo al menu...");
 						}
