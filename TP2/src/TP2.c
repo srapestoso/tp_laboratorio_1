@@ -13,7 +13,7 @@
 
 #include "ArrayEmployees.h"
 #include "utn.h"
-#define QTY_EMP 3
+#define QTY_EMP 1000
 
 
 int main(void){

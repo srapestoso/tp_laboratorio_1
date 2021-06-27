@@ -46,6 +46,12 @@ float utn_getFloat(float* pResultado, char* mensaje, char* mensajeError, int min
  */
 int utn_getString(char aux[],char* mensaje,char* mensajeError, int reintentos);
 
+/* \brief: Valida que sea solo caracteres alfabeticos.
+ * \param1: String que recibe como parametro.
+ * \return: Retorna (0) si validó bien y (-1) si hubo errores.
+ */
+int isValidTexto(char* stringRecibido);
+
 /*
  * brief: Pide el ingreso de una respuesta al usuario.
  * param1: Puntero a la variable donde se escribirá la respuesta válidada.
@@ -55,4 +61,24 @@ int utn_getString(char aux[],char* mensaje,char* mensajeError, int reintentos);
  * return: Retorna (0) si válido bien y (-1) en caso de no tener más reintentos.
  */
 int utn_getRespuesta(char* pCaracter,char* mensaje,char* mensajeError, int reintentos);
+
+/*
+ * brief: Muestra el menu principal del programa
+ */
+void menuPrincipial(void);
+
+/*
+ * brief: Muestra el menu para la modificación de los datos.
+ */
+void menuModificar(void);
+
+/*
+ * brief: Muestra un menu al usuario para seleccionar un criterio de ordenamiento.
+ */
+void menuOrdenamiento1(void);
+
+/*
+ * brief: Muestra un menu de seleccion de ordenamiento al usuario.
+ */
+void menuOrdenamiento2(void);
 #endif /* UTN_H_ */
